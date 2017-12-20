@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>
+        <strong>The Psychic Game</strong>
+    </h1>
+    <h2>Guess what letter I'm thinking of</h2>
+    <h3>Wins:
+        <span id="wins"></span>
+    </h3>
+    <h3>Loses:
+        <span id="loses"></span>
+    </h3>
+    <h3>Guesses Left:
+        <span id="guessesleft"></span>
+    </h3>
+    <h3>Your Guesses so far:
+        <span id="sofar"></span>
+    </h3>
+
+
+
+    <script type="text/javascript">
+
+        //Global Variables
+        var wins = 0;
+        var loses = 0;
+        var guesseslefttotal = 9;
+        var sofartotal = [];
+        var userchoice = "";
+        var computerchoice = "";
+        
+
+        //Array of Letters
+
+        var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+
+        //keypress
+        document.onkeyup = function (event) {
+            userchoice = event.key;
+            sofartotal.push(userchoice);
+            document.getElementById("sofar").textContent = sofartotal;
+            
+            //random letter
+            var computerchoice = letters[Math.floor(Math.random() * letters.length)];
+            
+//win
+            if (userchoice === computerchoice) {
+                wins += 1;
+                document.getElementById("wins").textContent = wins;
+                alert("You Win");
+                guesseslefttotal = 9
+                sofartotal =[]
+
+            } else {
+                guesseslefttotal -= 1;
+            }
+
+            document.getElementById("loses").textContent = loses;  
+            document.getElementById("guessesleft").textContent = guesseslefttotal;
+//lose
+            if (guesseslefttotal === 0) {
+            guesseslefttotal = 9;
+            loses += 1;
+            sofartotal =[]
+            alert("You Lose");
+        
+            }
+
+
+
+
+}
+        
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
